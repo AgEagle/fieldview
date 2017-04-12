@@ -1,0 +1,45 @@
+{
+  "fields_no_more": {
+    "results": [
+      {
+        "id": "e310153a-1058-43dc-9c06-a5b90ebab5c4",
+        "name": "NE of Airport",
+        "boundaryId": "cb6a0f44-3627-44d5-abd9-49591f830ab4"
+      }
+    ]
+  },
+  "authorization": {
+    "access_token": "b2a58121-e02e-4c56-9036-ac23eb295ddc",
+    "token_type": "bearer",
+    "refresh_token": "23bba1b4-4e61-4e41-83fb-620061158239",
+    "expires_in": 14399,
+    "scope": "openid partnerapis platform",
+    "id_token": "8s9nxjx908uoij12oik2j4.1j4kjs90ivcoixkjmxrw3um493u8924u4yuemnshfjdsen450q.dG9rZW4iLCJhdWQiOiJwYXJ0bmVyLWFncmlib3RpeCIsImV4cCI6MTQ5MTk0NTUzNSwiaWF0IjoxNDkxOTQ0OTM1LCJhdXRoX3RpbWUiOjE0OTE5NDQ5MzUsInVzZXJfaWQiOiIxODYzNzUiLCJzdWIiOiIxODYzNzUiLCJlbWFpbCI6ImNvbXB1dGVAYWdyaWJvdGl4LmNvbSIsImFkZHJlc3MiOnt9LCJyb2xlcyI6WyJjbGllbnQiXSwicGhvbmVfbnVtYmVyIjoiMzAzNzE3ODk3OSJ9.TjSPzpdIUUQMD3wh_-PCdB2o0M8n1tpWAeicQ-Wz-AwXsbmxesDnZroppsN-0_H_8ULOhSKwlGVGEuuD6QfYElhlGZuviSZcYkwYDNtXNN9oVa4MgfWK76txLV59oaGpFuHlqKGMskL4uV5Ao_H9_0jN1THqluav-WUh4WwxB-LclIu4i7gv1g5Bw5zpzzccQAzErc04u_Gf1gwi1IZtFYJJncSnnm1hp5XhBZgLZD0twiNOYzxML3nFbM37WEf1G3iqSLiTH1bIKc_MO7dG3o8oq3SoYjDmjRWl7iL7WD3jZHWiAuvVBa0rDqOOeVpCPUYPk62n9HJ6JNtMnSp3eUvnR8nfaOvm7P1ZehOAVnJVq1yWfjOtxEvjLBmD7wRs9I5N2OANiLgqvnvJVy_BuAqQXDqmgusrU9FotGRP2obSRfZvaPzxXurCYY9OfS8uxxHBlzVe06dTNRezuOzy_op7y33dOEOzFfoBNyFcTtlptcICs6uIsGC_k239auWTiMKIGgAdtbgoAvVLK49-s7IdX9gfUv9ugaZgduPDq6hzxWQh-Uahyf1LkpLfb9wTHPdq9upW8Dt5iSBQKcngCBdLjR3WrGIRi0M0m2beRSB-acUiIWreeoCOY78UErEd5ebYwfBaAFh1Igy5EfvfYyaNjhv1-cYX8q3fc2JBPPU",
+    "user": {
+      "tosacceptedat": null,
+      "email": "testing@test.com",
+      "firstviews": 0,
+      "phone": "5555555555",
+      "roles": [
+        "Client"
+      ],
+      "city": null,
+      "firstname": "Testing",
+      "source": "user-service-default",
+      "address1": null,
+      "mailchimp": false,
+      "address2": null,
+      "zip": null,
+      "id": 186375,
+      "state": null,
+      "lastname": "Lastname",
+      "uuid": "ca9cdad5-c759-44b5-9442-371338f301a9",
+      "enabled": true,
+      "country": "United States",
+      "asOf": 1491944935932
+    },
+    "site": {
+      "siteCode": "fccd95c45c048f7c8c9a60c8"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+PATH
+  remote: .
+  specs:
+    fieldview (0.0.0)
+      faraday (~> 0.9)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    addressable (2.3.6)
+    byebug (9.0.6)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
+    faraday (0.12.0.1)
+      multipart-post (>= 1.2, < 3)
+    hashdiff (0.2.2)
+    multipart-post (2.0.0)
+    safe_yaml (1.0.4)
+    webmock (1.22.3)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  byebug
+  fieldview!
+  webmock
+
+BUNDLED WITH
+   1.13.2

@@ -1,6 +1,7 @@
 *agribotix*
 *.gem
 *.rbc
+*.byebug*
 /.config
 /coverage/
 /InstalledFiles
