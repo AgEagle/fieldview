@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', __FILE__)
 
-class AuthTokenTest < Minitest::Test
+class TestAuthToken < Minitest::Test
   FIXTURE = API_FIXTURES.fetch(:authorization)
   def auth_uri_stub
     "#{prefix_for_all_requests}#{FieldView.oauth_token_base[8..-1]}"

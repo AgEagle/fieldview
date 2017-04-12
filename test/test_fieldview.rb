@@ -1,6 +1,6 @@
 require File.expand_path('../test_helper', __FILE__)
 
-class FieldViewTest < Minitest::Test
+class TestFieldView < Minitest::Test
   def test_now
     assert (Time.now - FieldView.get_now_for_auth_token) <= 5, "should be close"
     expected_time = Time.now - 20

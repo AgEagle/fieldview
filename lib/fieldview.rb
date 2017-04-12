@@ -122,17 +122,21 @@ require 'fieldview/auth_token'
 require 'fieldview/fields'
 require 'fieldview/fieldview_response'
 require 'fieldview/field'
+require 'fieldview/list_object'
 
 module FieldView
   @oauth_token_base = "https://api.climate.com/api/oauth/token"
   @api_base = "https://platform.climate.com/v"
   @max_network_retries = 0
   @api_version = 4
+  @default_page_limit = 100
   NEXT_TOKEN_HEADER_KEY = "X-Next-Token"
   REQUEST_ID_HEADER_KEY = "X-Http-Request-Id"
+  PAGE_LIMIT_HEADER_KEY = "X-Limit"
 
   class << self
-    attr_accessor :oauth_token_base, :api_base, :max_network_retries, :api_version, :now
+    attr_accessor :oauth_token_base, :api_base, :max_network_retries, :api_version, :now,
+      :default_page_limit
 
     def get_now_for_auth_token
       now || Time.now

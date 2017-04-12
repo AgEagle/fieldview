@@ -14,8 +14,8 @@ spec = Gem::Specification.new do |s|
   s.add_dependency('faraday', '~> 0.9')
 
   s.files = Dir['lib/**/*.rb']
-  # s.files = `git ls-files`.split("\n")
-  # s.test_files    = `git ls-files -- test/*`.split("\n")
-  # s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.files = `git ls-files`.split("\n")
+  s.test_files    = `git ls-files -- test/*`.split("\n")
+  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ['lib']
 end

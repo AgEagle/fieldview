@@ -13,6 +13,13 @@ class Minitest::Test
   #
   API_FIXTURES = APIFixtures.new
 
+  def new_auth_token
+    FieldView::AuthToken.new(
+      access_token: "yyy",
+      refresh_token: "xxx"
+      )
+  end
+
   def setup_for_api_requests()
     FieldView.redirect_uri = "http://fake.test/"  
     FieldView.client_id = "fake-client"
