@@ -42,9 +42,9 @@ Run all tests:
 
 Run a single test suite:
 
-    bundle exec ruby -Ilib/ test/test_field_view.rb
+    bundle exec ruby -Ilib/ test/field_view_test.rb
 
 Run a single test:
 
-    bundle exec ruby -Ilib/ test/stripe/test_field_view.rb -n /client.id/
+    bundle exec ruby -Ilib/ test/field_view_test.rb -n /client.id/
 
