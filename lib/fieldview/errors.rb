@@ -57,4 +57,8 @@ module FieldView
   # Raised when something goes wrong with FieldView
   class InternalServerError < FieldViewError
   end
+
+  # Raised when the server is busy
+  class ServerBusyError < FieldViewError
+  end
 end

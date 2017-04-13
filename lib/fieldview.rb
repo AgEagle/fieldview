@@ -91,6 +91,10 @@ module FieldView
       body = response.body
       error = nil
       case code
+      when 503
+        error = ServerBusyError.new(
+          "Server Busy", http_status: code, http_body: body,
+          http_headers: headers)
       when 400, 404
         error = InvalidRequestError.new(
           "Bad input", http_status: code, http_body: body,
