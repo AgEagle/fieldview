@@ -86,7 +86,7 @@ module FieldView
       @_client_secret = value
     end
 
-    def handle_response_error_codes!(response)
+    def handle_response_error_codes(response)
       headers = response.to_hash
       code = response.code.to_i
       body = response.body

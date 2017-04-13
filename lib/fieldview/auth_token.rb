@@ -71,7 +71,7 @@ module FieldView
       end
 
       response = http.request(request)
-      FieldView.handle_response_error_codes!(response)
+      FieldView.handle_response_error_codes(response)
       return FieldViewResponse.new(response)
     end
 
