@@ -7,18 +7,20 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.3.6)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     byebug (9.0.6)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     faraday (0.12.0.1)
       multipart-post (>= 1.2, < 3)
-    hashdiff (0.2.2)
+    hashdiff (0.3.2)
     minitest (5.8.4)
     multipart-post (2.0.0)
+    public_suffix (2.0.5)
     rake (11.3.0)
     safe_yaml (1.0.4)
-    webmock (1.22.3)
+    webmock (3.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
