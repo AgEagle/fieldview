@@ -67,7 +67,7 @@ module FieldView
       request["Content-Type"] = "application/json"
       
       headers.each do |header,value|
-        request[header] = value
+        request[header] = value.to_s
       end
 
       response = http.request(request)
