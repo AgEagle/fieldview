@@ -10,7 +10,6 @@ module FieldView
           })
       next_token = response.http_headers[FieldView::NEXT_TOKEN_HEADER_KEY]
 
-      byebug
       if (response.http_status == 200 || response.http_status == 206) then
         # 206: Partial result, will have more data
         # 200: When all the results were in the list
