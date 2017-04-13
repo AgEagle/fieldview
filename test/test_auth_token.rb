@@ -85,7 +85,7 @@ class TestAuthToken < Minitest::Test
     assert token.refresh_token_expired?
 
     assert_raises FieldView::AllTokensExpiredError do
-      token.execute_request(:get, "dont/care")
+      token.execute_request!(:get, "dont/care")
     end
   end
 end

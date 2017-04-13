@@ -3,7 +3,7 @@ module FieldView
     PATH = "fields"
     def self.list(auth_token, limit: nil, next_token: nil)
       limit ||= FieldView.default_page_limit
-      response = auth_token.execute_request(:get, PATH,
+      response = auth_token.execute_request!(:get, PATH,
         headers: {
           FieldView::NEXT_TOKEN_HEADER_KEY => next_token,
           FieldView::PAGE_LIMIT_HEADER_KEY => limit

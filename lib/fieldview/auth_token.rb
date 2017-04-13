@@ -45,7 +45,7 @@ module FieldView
       end
     end
 
-    def execute_request(method, path, headers: {}, params: {})
+    def execute_request!(method, path, headers: {}, params: {})
       self.last_request = path
       if access_token_expired? && refresh_token_expired? then
         raise AllTokensExpiredError.new("All of your tokens have expired. " \
