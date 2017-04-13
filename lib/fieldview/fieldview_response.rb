@@ -14,7 +14,7 @@ module FieldView
       self.http_body = response.body
       begin
         self.data = JSON.parse(response.body, symbolize_names: true)
-      rescue JSON::ParserError => e
+      rescue JSON::ParserError
         self.data = nil
       end
       self.http_status = response.code.to_i
