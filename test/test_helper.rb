@@ -36,6 +36,6 @@ class Minitest::Test
   end
 
   def prefix_for_all_requests
-    "https://#{FieldView.client_id}:#{FieldView.client_secret}@"
+    "https://"
   end
 end
