@@ -16,7 +16,7 @@ class TestListObject < Minitest::Test
     next_token = "JZIOJKLJ"
     list = FieldView::ListObject.new(FieldView::Fields, new_auth_token, 
       ["dont","care"], 206, next_token: next_token)
-    stub_request(:get, "https://platform.climate.com/v4/fields").
+    stub_request(:get, /fields/).
       with(headers: next_token_headers(next_token)).
       to_return(status: 200, body: API_FIXTURES[:field_two_list].to_json(),
         headers: next_token_headers())

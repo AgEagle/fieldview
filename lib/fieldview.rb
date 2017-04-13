@@ -11,6 +11,7 @@ require 'fieldview/util'
 require 'fieldview/fieldview_response'
 require 'fieldview/field'
 require 'fieldview/list_object'
+require 'fieldview/boundary'
 
 module FieldView
   @oauth_token_base = "https://api.climate.com/api/oauth/token"
