@@ -9,15 +9,26 @@ require File.expand_path('../api_fixtures', __FILE__)
 class Minitest::Test
   # Fixtures are available in tests using something like:
   #
-  #   API_FIXTURES[:charge][:id]
+  #   API_FIXTURES[:fields][:id]
   #
   API_FIXTURES = APIFixtures.new
+
+
+  def next_token_headers(next_token = "AZXJKLA123")
+    return {FieldView::NEXT_TOKEN_HEADER_KEY => next_token}
+  end
 
   def new_auth_token
     FieldView::AuthToken.new(
       access_token: "yyy",
       refresh_token: "xxx"
       )
+  end
+
+  def api_requests()
+    setup_for_api_requests
+    yield
+    teardown_for_api_request
   end
 
   def setup_for_api_requests()

@@ -3,10 +3,6 @@ require File.expand_path('../test_helper', __FILE__)
 class TestFields < Minitest::Test
   FIXTURE = API_FIXTURES.fetch(:single_field_list)
 
-  def next_token_headers(next_token = "AZXJKLA123")
-    return {FieldView::NEXT_TOKEN_HEADER_KEY => next_token}
-  end
-
   def setup
     setup_for_api_requests
   end

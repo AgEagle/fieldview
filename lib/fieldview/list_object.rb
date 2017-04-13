@@ -16,5 +16,17 @@ module FieldView
     def each(&blk)
       self.data.each(&blk)
     end
+
+    def next_page!()
+      return if !self.more_pages?()
+      new_list = @listable.list(auth_token, limit: self.limit, next_token: self.next_token)
+      @data = new_list.data
+      @last_http_status = new_list.last_http_status
+      @auth_token = new_list.auth_token
+    end
+
+    def more_pages?()
+      return Util.http_status_is_more_in_list?(self.last_http_status)
+    end
   end
 end

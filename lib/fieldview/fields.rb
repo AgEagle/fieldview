@@ -23,7 +23,7 @@ module FieldView
       end
       
       return ListObject.new(
-        self,
+        self.class,
         auth_token,
         return_data.collect { |i| Field.new(i, auth_token) },
         response.http_status,
