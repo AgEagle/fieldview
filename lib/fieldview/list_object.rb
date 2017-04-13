@@ -1,7 +1,7 @@
 module FieldView
   class ListObject
     attr_accessor :limit
-    attr_reader :auth_token, :data, :last_http_status, :next_token
+    attr_reader :auth_token, :data, :last_http_status, :next_token, :listable
     include Enumerable
 
     def initialize(listable, auth_token, data, http_status, next_token: nil, limit: 100)
@@ -23,6 +23,11 @@ module FieldView
       @data = new_list.data
       @last_http_status = new_list.last_http_status
       @auth_token = new_list.auth_token
+    end
+
+    # alias for more_pages
+    def has_more?()
+      return self.more_pages?()
     end
 
     def more_pages?()

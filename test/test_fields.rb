@@ -22,6 +22,7 @@ class TestFields < Minitest::Test
     assert_equal FIXTURE[:results].length, fields.data.length
     assert_equal FIXTURE[:results][0][:id], fields.data[0].id
     assert_equal next_token, fields.next_token
+    assert_equal FieldView::Fields, fields.listable
   end
 
   def test_list_with_no_more_data
