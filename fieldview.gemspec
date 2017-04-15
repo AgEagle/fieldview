@@ -5,7 +5,7 @@ spec = Gem::Specification.new do |s|
   s.version = "0.0.0"
   s.required_ruby_version = '>= 1.9.3'
   s.summary = 'Ruby bindings for the FieldView API'
-  s.description = ' FieldView is used make data-driven decisions to maximize your return on every acre.'
+  s.description = ' FieldView is used to make data-driven decisions to maximize your return on every acre. This Ruby Gem is provided as a convenient way to access their API.'
   s.author = 'Paul Susmarski'
   s.email = 'paul@susmarski.com'
   s.homepage = 'http://rubygems.org/gems/fielview'
