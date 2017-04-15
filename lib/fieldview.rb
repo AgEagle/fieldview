@@ -109,6 +109,7 @@ module FieldView
           "Forbidden", http_status: code, http_body: body,
           http_headers: headers)
       when 429
+        # Retry-After will be in the headers
         error = RateLimitError.new(
           "Too many requests", http_status: code, http_body: body,
           http_headers: headers)
