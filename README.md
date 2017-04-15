@@ -1,3 +1,7 @@
+# FieldView API Library
+
+The FieldView Ruby library provides convenient access to the FieldView API from applications written in the Ruby language. It includes a pre-defined set of classes for API resources that are available currently from the API. You will need to get access from a Climate Cooperation representative and the interface utilize OAUTH 2.0.
+
 ## Usage
 
 The library needs to be configured with your FieldView account's client secret,
@@ -48,3 +52,6 @@ Run a single test:
 
     bundle exec ruby -Ilib/ test/field_view_test.rb -n /client.id/
 
+## Disclaimer
+
+This Gem is in no way associated with The Climate Cooperation, and they are in no way associated with it's support, maintenance, or updates.
