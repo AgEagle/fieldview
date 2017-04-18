@@ -2,6 +2,16 @@
 
 The FieldView Ruby library provides convenient access to the FieldView API from applications written in the Ruby language. It includes a pre-defined set of classes for API resources that are available currently from the API. You will need to get access from a Climate Corporation representative and the interface utilize OAUTH 2.0.
 
+OAuth token refreshing is handled for your if for some reason the token expires in the middle of requests (this requires that you provide the `refresh_token` with the creation of the `AuthToken`).
+
+## Listable Objects
+
+FieldView returns pages of objects that are tracked via the headers, you cannot go back in pages easily (perhaps we could be tracking the next-token?). Use `more_pages?` on the listable object to see if there are more pages to be acquired by using `next_page!`. The `next_token` on listable objects can also be preserved when reaching the end of a list to see if there are any additional changes since the `next_token` was saved.
+
+The raw data can be acquired by using `.data` on a listable object.
+
+When finished you will want to store information of the `AuthToken` somewhere as it may have changed with requests.
+
 ## Usage
 
 The library needs to be configured with your FieldView account's client secret,
@@ -35,6 +45,15 @@ auth_token = FieldView::AuthToken.new(access_token: <ATOKEN>)
 # refresh token and a new access/refresh token will be associated with the object
 auth_token = FieldView::AuthToken.new(refresh_token: <RTOKEN>) 
 
+# Then you can do something like this:
+
+fields = FieldView::Fields.list(auth_token)
+
+fields.each do |field|
+    puts field.boundary
+end
+
+fields.has_more?
 
 ```
 
@@ -51,6 +70,12 @@ Run a single test suite:
 Run a single test:
 
     bundle exec ruby -Ilib/ test/field_view_test.rb -n /client.id/
+
+## TODOs
+
+- [ ] Probably add configurable behavior for auto-refresh
+- [ ] Change the configuration to non-static variables (at least the items that are required)
+- [ ] Use faraday so that we are middleware agnostic
 
 ## Disclaimer
 
