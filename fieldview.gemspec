@@ -11,8 +11,6 @@ spec = Gem::Specification.new do |s|
   s.homepage = 'http://rubygems.org/gems/fielview'
   s.license = 'MIT'
 
-  s.add_dependency('faraday', '~> 0.9')
-
   s.files = Dir['lib/**/*.rb']
   s.files = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- test/*`.split("\n")
