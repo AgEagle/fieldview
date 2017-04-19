@@ -58,6 +58,30 @@ fields.has_more?
 
 ```
 
+## Uploading a File in Chunks
+
+Assuming you've acquired an AuthToken, then you can do something like the following:
+
+``` ruby
+file = <PATH TO SOME FILE>
+upload = FieldView::Upload.create(auth_token, 
+    Digest::MD5.file(file).to_s, File.size(file), 
+    <SOME FILE TYPE>)
+
+start_bytes = 0
+File.open(file, "rb") do|f|
+    response = nil
+    until f.eof?
+        # since it's 0 based
+        bytes = f.read(FieldView::Upload::REQUIRED_CHUNK_SIZE)
+        end_bytes = start_bytes + bytes.bytesize - 1
+        response = upload.upload_chunk(start_bytes, end_bytes, bytes)
+        puts "Uploaded #{start_bytes}-#{end_bytes}/#{File.size(file)}"
+        start_bytes = end_bytes + 1
+    end
+end
+```
+
 ## Development
 
 Run all tests:
