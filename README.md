@@ -94,7 +94,7 @@ Run a single test suite:
 
 Run a single test:
 
-    bundle exec ruby -Ilib/ test/field_view_test.rb -n /client.id/
+    bundle exec ruby -Ilib/ test/field_view_test.rb -n /requires_redirect_uri/
 
 ## TODOs
 
