@@ -17,7 +17,7 @@ module FieldView
                    http_headers: nil, fieldview_response: nil)
       @message = message
       if fieldview_response then
-        response = fieldview_response
+        self.response = fieldview_response
         http_status = fieldview_response.http_status
         http_body = fieldview_response.http_body
         http_headers = fieldview_response.http_headers
