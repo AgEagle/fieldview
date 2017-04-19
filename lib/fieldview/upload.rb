@@ -41,7 +41,7 @@ module FieldView
     def upload_chunk(start_bytes, end_bytes, bytes)
       if (end_bytes.to_i - start_bytes.to_i + 1) != bytes.bytesize ||
         bytes.bytesize > REQUIRED_CHUNK_SIZE then
-        raise ArgumentError("End bytes (#{end_bytes}) - Start bytes (#{start_bytes})" \
+        raise ArgumentError.new("End bytes (#{end_bytes}) - Start bytes (#{start_bytes})" \
           " must be equal to bytes (#{bytes}) and no greater than #{REQUIRED_CHUNK_SIZE}")
       end
       response = auth_token.execute_request!(:put, "#{PATH}/#{self.id}",

@@ -48,6 +48,24 @@ class TestUpload < Minitest::Test
     end
   end
 
+  def test_uploading_wrong_chunk_size
+    upload = FieldView::Upload.new("dontcare", 
+      50000000, new_auth_token)
+
+    bytes = "12345678"
+    start_bytes = 0
+    end_bytes = 5
+    assert_raises(ArgumentError, "Wrong byte start/end") do
+      upload.upload_chunk(start_bytes, end_bytes, bytes)
+    end
+
+    bytes = "A" * (FieldView::Upload::REQUIRED_CHUNK_SIZE + 1)
+    end_bytes = bytes.bytesize - 1
+    assert_raises(ArgumentError, "Larger than the accepted chunk size") do
+      upload.upload_chunk(start_bytes, end_bytes, bytes)
+    end
+  end
+
   def test_can_upload_chunk
     uuid = "1a2623b3-d2a7-4e52-ba21-a3eb521a3208"
     total_content_length = FieldView::Upload::REQUIRED_CHUNK_SIZE * 2
