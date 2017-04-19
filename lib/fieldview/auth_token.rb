@@ -60,15 +60,27 @@ module FieldView
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = FieldView.api_base.start_with?("https")
       request = Net::HTTP.class_eval(method.to_s.capitalize).new(uri.request_uri)
+      if method == :get then
+        new_query_ar = URI.decode_www_form(uri.query || '') 
+        params.each do |key,value|
+          new_query_ar << [key.to_s, value.to_s]
+        end
+        uri.query = URI.encode_www_form(new_query_ar)
+        request = Net::HTTP.class_eval(method.to_s.capitalize).new(uri.request_uri)
+      else
+        if params.is_a?(Hash)
+          request.body = params.to_json()
+        else
+          request.body = params
+        end
+      end
       request["Accept"] = "*/*"
       request["Authorization"] = "Bearer #{self.access_token}"
       request["X-Api-Key"] = FieldView.x_api_key
       request["Content-Type"] = "application/json"
-      
       headers.each do |header,value|
         request[header] = value.to_s
       end
-
       response = http.request(request)
       FieldView.handle_response_error_codes(response)
       return FieldViewResponse.new(response)
@@ -105,6 +117,13 @@ module FieldView
         json = JSON.parse(response.body, symbolize_names: true)
         return AuthToken.new(json)
       end
+    end
+
+    def to_s()
+      [
+        "AccessToken: #{self.access_token}, Expiration: #{self.access_token_expiration_at}",
+        "RefreshToken: #{self.refresh_token}, Expiration: #{self.refresh_token_expiration_at}"
+      ].join('\n')
     end
   end
 end

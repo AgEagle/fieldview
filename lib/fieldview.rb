@@ -5,11 +5,13 @@ require 'base64'
 
 # API Support Classes
 require 'fieldview/errors'
+require 'fieldview/requestable'
 require 'fieldview/auth_token'
 require 'fieldview/fields'
 require 'fieldview/util'
 require 'fieldview/fieldview_response'
 require 'fieldview/field'
+require 'fieldview/upload'
 require 'fieldview/list_object'
 require 'fieldview/boundary'
 

@@ -14,8 +14,14 @@ module FieldView
     attr_accessor :response
     # Initializes a FieldViewError.
     def initialize(message=nil, http_status: nil, http_body: nil,
-                   http_headers: nil)
+                   http_headers: nil, fieldview_response: nil)
       @message = message
+      if fieldview_response then
+        response = fieldview_response
+        http_status = fieldview_response.http_status
+        http_body = fieldview_response.http_body
+        http_headers = fieldview_response.http_headers
+      end
       @http_status = http_status
       @http_body = http_body
       @http_headers = http_headers || {}
@@ -60,5 +66,11 @@ module FieldView
 
   # Raised when the server is busy
   class ServerBusyError < FieldViewError
+  end
+
+  # Raised when a response code that is non-breaking is outside
+  # API specifications, ex: We expect a 201 when creating an upload, but it
+  # returns a 200
+  class UnexpectedResponseError < FieldViewError
   end
 end

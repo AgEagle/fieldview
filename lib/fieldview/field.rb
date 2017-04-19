@@ -1,14 +1,13 @@
 module FieldView
-  class Field
+  class Field < Requestable
     attr_accessor :id
     attr_accessor :name
     attr_accessor :boundary_id
-    attr_accessor :auth_token
     def initialize(json_object, auth_token = nil)
       self.id = json_object[:id]
       self.name = json_object[:name]
       self.boundary_id = json_object[:boundaryId]
-      self.auth_token = auth_token
+      super(auth_token)
     end
 
     def boundary
