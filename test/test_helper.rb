@@ -13,6 +13,9 @@ class Minitest::Test
   #
   API_FIXTURES = APIFixtures.new
 
+  def teardown
+    WebMock.reset!
+  end
 
   def next_token_headers(next_token = "AZXJKLA123")
     return {FieldView::NEXT_TOKEN_HEADER_KEY => next_token}

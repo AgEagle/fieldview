@@ -12,14 +12,13 @@ module FieldView
       # When the access token expires we'll need to refresh,
       # can be specified as part of the object, 14399 is what is being
       # returned at the time of writing this (2017-04-11)
-      self.access_token_expiration_at = params[:access_token_expiration_at] || (now + (params[:expires_in]||14399) - 10)
+      self.access_token_expiration_at = params[:access_token_expiration_at] || (now + (params[:expires_in]||14399))
 
       # Refresh token isn't required, but can be initialized with this
       self.refresh_token = params[:refresh_token]
 
-      # Refresh token technically expires in 30 days, but
-      # we'll subtract one day for safety
-      self.refresh_token_expiration_at = params[:access_token_expiration_at] || (now + (30-1)*24*60*60)
+      # Refresh token technically expires in 30 days
+      self.refresh_token_expiration_at = params[:access_token_expiration_at] || (now + (30)*24*60*60)
     end
 
     def access_token_expired?

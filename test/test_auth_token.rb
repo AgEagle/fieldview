@@ -9,8 +9,8 @@ class TestAuthToken < Minitest::Test
   def check_token_matches_fixture(token)
     assert_equal FIXTURE[:access_token], token.access_token
     assert_equal FIXTURE[:refresh_token], token.refresh_token
-    assert_equal FieldView.now + FIXTURE[:expires_in] - 15, token.access_token_expiration_at
-    assert_equal FieldView.now - 5 + 29*24*60*60, token.refresh_token_expiration_at, "Should be 29 days in the future"
+    assert_equal FieldView.now + FIXTURE[:expires_in] - 5, token.access_token_expiration_at
+    assert_equal FieldView.now + 30*24*60*60 - 5, token.refresh_token_expiration_at, "Should be 30 days in the future"
   end
 
   def setup
