@@ -2,7 +2,7 @@ $:.unshift(File.join(File.dirname(__FILE__), 'lib'))
 
 spec = Gem::Specification.new do |s|
   s.name = 'fieldview'
-  s.version = "0.0.0"
+  s.version = FieldView::VERSION
   s.required_ruby_version = '>= 1.9.3'
   s.summary = 'Ruby bindings for the FieldView API'
   s.description = ' FieldView is used to make data-driven decisions to maximize your return on every acre. This Ruby Gem is provided as a convenient way to access their API.'

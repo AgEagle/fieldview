@@ -3,6 +3,9 @@ require 'json'
 require 'rbconfig'
 require 'base64'
 
+# Version
+require 'fieldview/version'
+
 # API Support Classes
 require 'fieldview/errors'
 require 'fieldview/requestable'
