@@ -35,9 +35,10 @@ auth_token = FieldView::AuthToken.new_auth_token_with_code_from_redirect_code(<C
 # Or initialize with previous information
 auth_token = FieldView::AuthToken.new(
     access_token: <ATOKEN>, 
-    expiration_at: <DATETIME>,
+    expiration_at: <DATETIME>, # not required, but should be known
     refresh_token: <RTOKEN>,
-    refresh_token_expiration_at: <DATETIME>)
+    refresh_token_expiration_at: <DATETIME> # Not required, but should be known
+)
 
 # Or with just auth_token (assuming it hasn't expired)
 auth_token = FieldView::AuthToken.new(access_token: <ATOKEN>)
@@ -73,6 +74,7 @@ Run a single test:
 
 ## TODOs
 
+- [ ] Thread safety of the auth token object since it's passed to all created objects
 - [ ] Probably add configurable behavior for auto-refresh
 - [ ] Change the configuration to non-static variables (at least the items that are required)
 - [ ] Use faraday so that we are middleware agnostic
