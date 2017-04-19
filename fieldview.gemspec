@@ -1,5 +1,7 @@
 $:.unshift(File.join(File.dirname(__FILE__), 'lib'))
 
+require 'fieldview/version'
+
 spec = Gem::Specification.new do |s|
   s.name = 'fieldview'
   s.version = FieldView::VERSION
