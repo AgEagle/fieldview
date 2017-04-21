@@ -20,9 +20,8 @@ module FieldView
     def next_page!()
       return if !self.more_pages?()
       new_list = @listable.list(auth_token, limit: self.limit, next_token: self.next_token)
-      @data = new_list.data
-      @last_http_status = new_list.last_http_status
-      @auth_token = new_list.auth_token
+      initialize(new_list.listable, new_list.auth_token, 
+        new_list.data, new_list.last_http_status, next_token: new_list.next_token, limit: new_list.limit)
     end
 
     # alias for more_pages
@@ -32,6 +31,12 @@ module FieldView
 
     def more_pages?()
       return Util.http_status_is_more_in_list?(self.last_http_status)
+    end
+
+    def restart!()
+      @last_http_status = nil
+      @next_token = nil
+      next_page!()
     end
   end
 end

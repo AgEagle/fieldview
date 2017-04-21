@@ -1,7 +1,7 @@
 module FieldView
   class Util
     def self.http_status_is_more_in_list?(http_status)
-      return http_status.to_i == 206
+      return http_status.nil? || http_status.to_i == 206
     end
 
     def self.verify_response_with_code(message, fieldview_response, *acceptable_response_codes)
