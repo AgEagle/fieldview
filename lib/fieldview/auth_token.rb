@@ -103,10 +103,10 @@ module FieldView
     end
 
     # Code will be collected from the redirect to your server
-    def self.new_auth_token_with_code_from_redirect_code(code)
+    def self.new_auth_token_with_code_from_redirect_code(code, redirect_uri: nil)
       http, request = build_token_request([
         ["grant_type", "authorization_code"],
-        ["redirect_uri", FieldView.redirect_uri],
+        ["redirect_uri", redirect_uri || FieldView.redirect_uri],
         ["code", code]
       ])
       response = http.request(request)
