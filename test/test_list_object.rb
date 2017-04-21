@@ -5,7 +5,7 @@ class TestListObject < Minitest::Test
 
   def test_each_loop
     data = ["x","y","z"]
-    list = FieldView::ListObject.new(FieldView::Fields, new_auth_token, data, 200, next_token: nil)
+    list = FieldView::ListObject.new(FieldView::Field, new_auth_token, data, 200, next_token: nil)
 
     list.each_with_index do |x, i|
       assert_equal data[i], x
@@ -14,7 +14,7 @@ class TestListObject < Minitest::Test
 
   def test_get_next_page
     next_token = "JZIOJKLJ"
-    list = FieldView::ListObject.new(FieldView::Fields, new_auth_token, 
+    list = FieldView::ListObject.new(FieldView::Field, new_auth_token, 
       ["dont","care"], 206, next_token: next_token)
     stub_request(:get, /fields/).
       with(headers: next_token_headers(next_token)).

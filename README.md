@@ -48,7 +48,7 @@ auth_token = FieldView::AuthToken.new(refresh_token: <RTOKEN>)
 
 # Then you can do something like this:
 
-fields = FieldView::Fields.list(auth_token)
+fields = FieldView::Field.list(auth_token)
 
 fields.each do |field|
     puts field.boundary
