@@ -8,6 +8,7 @@ require 'fieldview/version'
 
 # API Support Classes
 require 'fieldview/errors'
+require 'fieldview/feature'
 require 'fieldview/requestable'
 require 'fieldview/auth_token'
 require 'fieldview/fields'
