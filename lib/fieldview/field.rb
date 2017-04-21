@@ -1,6 +1,14 @@
 module FieldView
   class Field < Requestable
     PATH = "fields"
+    def self.retrieve(auth_token, id)
+      response = auth_token.execute_request!(:get, "#{PATH}/#{id}")
+
+      Util.verify_response_with_code("Field retrieve", response, 200)
+
+      return new(response.data, auth_token)
+    end
+
     def self.list(auth_token, limit: nil, next_token: nil)
       limit ||= FieldView.default_page_limit
       response = auth_token.execute_request!(:get, PATH,
@@ -19,7 +27,8 @@ module FieldView
         return_data = []
       else
         # This should never happen
-        return_data = nil
+        raise UnexpectedResponseError.new("Fields list expects 200,206, or 304 for codes",
+          fieldview_response: response)
       end
       
       return ListObject.new(
@@ -30,7 +39,7 @@ module FieldView
         next_token: next_token,
         limit: limit)
     end
-    
+
     attr_accessor :id
     attr_accessor :name
     attr_accessor :boundary_id

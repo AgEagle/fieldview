@@ -11,6 +11,18 @@ class TestField < Minitest::Test
   def teardown
     teardown_for_api_request
   end
+
+  def test_retrieve()
+    stub_request(:get, /fields/).
+      to_return(status: 200, body: FIXTURE.to_json)
+
+    field = FieldView::Field.retrieve(new_auth_token, FIXTURE[:id])
+
+    assert_equal FIXTURE[:id], field.id
+    assert_equal FIXTURE[:name], field.name
+    assert_equal FIXTURE[:boundaryId], field.boundary_id
+    assert_equal new_auth_token.access_token, field.auth_token.access_token
+  end
   
   def test_list_with_one_page()
     next_token = "AZXJKLA123"
@@ -69,15 +81,6 @@ class TestField < Minitest::Test
     assert_equal 1, fields.data.length
   end
   
-  def test_initialization
-    field = FieldView::Field.new(FIXTURE, new_auth_token)
-  
-    assert_equal FIXTURE[:id], field.id
-    assert_equal FIXTURE[:name], field.name
-    assert_equal FIXTURE[:boundaryId], field.boundary_id
-    assert_equal new_auth_token.access_token, field.auth_token.access_token
-  end
-
   def test_get_boundary
     field = FieldView::Field.new(FIXTURE, new_auth_token)
 
