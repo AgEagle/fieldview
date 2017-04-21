@@ -1,6 +1,16 @@
 module FieldView
   class Field < Requestable
     PATH = "fields"
+    attr_accessor :id
+    attr_accessor :name
+    attr_accessor :boundary_id
+    def initialize(json_object, auth_token = nil)
+      self.id = json_object[:id]
+      self.name = json_object[:name]
+      self.boundary_id = json_object[:boundaryId]
+      super(auth_token)
+    end
+
     def self.retrieve(auth_token, id)
       response = auth_token.execute_request!(:get, "#{PATH}/#{id}")
 
@@ -38,16 +48,6 @@ module FieldView
         response.http_status,
         next_token: next_token,
         limit: limit)
-    end
-
-    attr_accessor :id
-    attr_accessor :name
-    attr_accessor :boundary_id
-    def initialize(json_object, auth_token = nil)
-      self.id = json_object[:id]
-      self.name = json_object[:name]
-      self.boundary_id = json_object[:boundaryId]
-      super(auth_token)
     end
 
     def boundary
