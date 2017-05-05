@@ -21,6 +21,20 @@ class TestAuthToken < Minitest::Test
     teardown_for_api_request
   end
 
+  def test_expiration_at_initialization
+    five_seconds_from_now = Time.now + 5
+    ten_seconds_from_now = Time.now + 10
+    token = FieldView::AuthToken.new(access_token: "yyy", refresh_access_token: "xxx",
+      access_token_expiration_at: five_seconds_from_now, refresh_token_expiration_at: ten_seconds_from_now)
+    assert_equal five_seconds_from_now, token.access_token_expiration_at
+    assert_equal ten_seconds_from_now, token.refresh_token_expiration_at
+
+    token = FieldView::AuthToken.new(access_token: "yyy", refresh_access_token: "xxx",
+      access_token_expiration_at: "2017-05-05T18:44:03.520-06:00", refresh_token_expiration_at: "2017-05-05T18:44:04.520-06:00")
+    assert_equal Time.parse("2017-05-05T18:44:03.520-06:00"), token.access_token_expiration_at
+    assert_equal Time.parse("2017-05-05T18:44:04.520-06:00"), token.refresh_token_expiration_at
+  end
+
   def test_build_token_request
     http, request = FieldView::AuthToken.build_token_request([["dont", "care"]])
     assert_equal "/api/oauth/token?dont=care", request.path
