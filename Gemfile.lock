@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    fieldview (0.0.1)
+    fieldview (0.0.2)
 
 GEM
   remote: https://rubygems.org/

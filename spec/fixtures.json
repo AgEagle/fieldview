@@ -1,16 +1,18 @@
 {
   "boundary_one": {
     "id": "e694b43e-86eb-4773-86d0-3c4f546178dc",
-    "area": {
-      "q": 58.923473472390256,
-      "u": "ac"
-    },
-    "centroid": {
-      "type": "Point",
-      "coordinates": [
-        -105.223479062131,
-        40.0579906147381
-      ]
+    "properties": {
+      "area": {
+        "q": 58.923473472390256,
+        "u": "ac"
+      },
+      "centroid": {
+        "type": "Point",
+        "coordinates": [
+          -105.223479062131,
+          40.0579906147381
+        ]
+      }
     },
     "geometry": {
       "type": "MultiPolygon",

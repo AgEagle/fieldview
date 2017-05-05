@@ -3,9 +3,9 @@ module FieldView
     attr_accessor :id, :units, :area, :centroid, :geometry
     def initialize(json_object)
       self.id = json_object[:id]
-      self.area = json_object[:area][:q]
-      self.units = json_object[:area][:u]
-      self.centroid = Feature.new(json_object[:centroid])
+      self.area = json_object[:properties][:area][:q]
+      self.units = json_object[:properties][:area][:u]
+      self.centroid = Feature.new(json_object[:properties][:centroid])
       self.geometry = Feature.new(json_object[:geometry])
     end
   end
