@@ -26,21 +26,21 @@ module FieldView
           FieldView::NEXT_TOKEN_HEADER_KEY => next_token,
           FieldView::PAGE_LIMIT_HEADER_KEY => limit
           })
+
+      Util.verify_response_with_code("Field list", response, 200, 206, 304)
+
       next_token = response.http_headers[FieldView::NEXT_TOKEN_HEADER_KEY]
 
-      if (response.http_status == 200 || response.http_status == 206) then
+      case response.http_status
+      when 200, 206
         # 206: Partial result, will have more data
         # 200: When all the results were in the list
         return_data = response.data[:results]
-      elsif (response.http_status == 304)
+      when 304
         # 304: Nothing modified since last request
         return_data = []
-      else
-        # This should never happen
-        raise UnexpectedResponseError.new("Fields list expects 200,206, or 304 for codes",
-          fieldview_response: response)
       end
-      
+
       return ListObject.new(
         self,
         auth_token,

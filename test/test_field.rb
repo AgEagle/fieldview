@@ -23,6 +23,15 @@ class TestField < Minitest::Test
     assert_equal FIXTURE[:boundaryId], field.boundary_id
     assert_equal new_auth_token.access_token, field.auth_token.access_token
   end
+
+  def test_list_with_bad_status()
+    stub_request(:get, /fields/).
+      to_return(status: 207)
+
+    assert_raises FieldView::UnexpectedResponseError do
+      field = FieldView::Field.list(new_auth_token)
+    end
+  end
   
   def test_list_with_one_page()
     next_token = "AZXJKLA123"
