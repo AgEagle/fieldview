@@ -28,7 +28,7 @@ class TestUpload < Minitest::Test
       with(body: {
           "md5" => md5,
           "length" => content_length,
-          "content-type" => content_type
+          "contentType" => content_type
       }).
       to_return(status: 201, body: %Q!"#{uuid}"!)
 

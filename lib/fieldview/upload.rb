@@ -18,7 +18,7 @@ module FieldView
         params: {
           "md5" => md5,
           "length" => content_length,
-          "content-type" => content_type
+          "contentType" => content_type
       })
 
       Util.verify_response_with_code("Upload creation", response, 201)
