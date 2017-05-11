@@ -15,7 +15,13 @@ class TestUpload < Minitest::Test
       to_return(status: 200)
 
     assert_raises(FieldView::UnexpectedResponseError) do
-      FieldView::Upload.create(new_auth_token, "dontcare", 5, "dontcare")
+      FieldView::Upload.create(new_auth_token, "dontcare", 5, FieldView::Upload::CONTENT_TYPES.first)
+    end
+  end
+
+  def test_create_with_invalid_content_type()
+    assert_raises ArgumentError do
+      FieldView::Upload.create(new_auth_token, "dontcare", "dontcare", "NOT REAL")
     end
   end
   

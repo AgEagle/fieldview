@@ -1,5 +1,8 @@
 module FieldView
   class Upload < Requestable
+    CONTENT_TYPES = ["image/vnd.climate.thermal.geotiff", "image/vnd.climate.ndvi.geotiff",
+      "image/vnd.climate.rgb.geotiff", "image/vnd.climate.raw.geotiff"]
+
     # 5 Megabytes is the current chunk size
     REQUIRED_CHUNK_SIZE = 5*1024*1024
     CHUNK_CONTENT_TYPE = "application/octet-stream"
@@ -7,13 +10,19 @@ module FieldView
     PATH = "uploads"
     attr_accessor :id, :content_length, :content_type
 
+    def self.valid_content_type?(content_type)
+      return CONTENT_TYPES.include?(content_type)
+    end
+
     # Creates an upload with the specified items, all required.
     # will return an a new upload object that has it's ID which can be
-    # used to upload. The following are known content types:
-    # image/vnd.climate.thermal.geotiff, image/vnd.climate.ndvi.geotiff, 
-    # image/vnd.climate.chlorophyll.geotiff, image/vnd.climate.cci.geotiff,
-    # image/vnd.climate.waterstress.geotiff, image/vnd.climate.infrared.geotiff
+    # used to upload. See the constant "CONTENT_TYPES" for the list 
+    # of known types
     def self.create(auth_token, md5, content_length, content_type)
+      if not self.valid_content_type?(content_type) then
+        raise ArgumentError.new("content_type must be set to one of the following: #{CONTENT_TYPES.join(', ')}")
+      end
+
       response = auth_token.execute_request!(:post, PATH,
         params: {
           "md5" => md5,
