@@ -18,6 +18,8 @@ class TestListObject < Minitest::Test
     list.each_with_index do |x, i|
       assert_equal data[i], x
     end
+
+    assert_equal 200, list.limit
   end
 
   def test_restart

@@ -9,7 +9,7 @@ module FieldView
       @data = data
       @last_http_status = http_status
       @next_token = next_token
-      @limit = 100
+      @limit = limit
       super(auth_token)
     end
 
