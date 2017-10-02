@@ -19,7 +19,8 @@ class TestListObject < Minitest::Test
       assert_equal data[i], x
     end
 
-    assert_equal 200, list.limit
+    assert_equal 100, list.limit
+    assert_equal 200, list.last_http_status
   end
 
   def test_restart
