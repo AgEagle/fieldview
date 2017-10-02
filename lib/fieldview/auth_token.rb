@@ -89,7 +89,13 @@ module FieldView
       headers.each do |header,value|
         request[header] = value.to_s
       end
-      response = http.request(request)
+      response = nil
+      begin
+        response = http.request(request)
+      rescue Zlib::DataError => e
+        raise BadRequestError.new("A data error has occurred with Zlib while making the request, check the headers: #{request.to_hash}",
+          http_body: params)
+      end
       FieldView.handle_response_error_codes(response)
       return FieldViewResponse.new(response)
     end

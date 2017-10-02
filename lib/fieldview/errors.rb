@@ -73,4 +73,9 @@ module FieldView
   # returns a 200
   class UnexpectedResponseError < FieldViewError
   end
+
+  # Raised when a request fails for some reason on the auth_token, this will be
+  # expanded upon as more errors arise
+  class BadRequestError < FieldViewError
+  end
 end
