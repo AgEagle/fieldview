@@ -21,6 +21,17 @@ class TestAuthToken < Minitest::Test
     teardown_for_api_request
   end
 
+  def test_blank_next_token_is_deleted_from_headers
+    auth_token = new_auth_token
+    stub_request(:get, "https://platform.climate.com/v4//fields").
+      with(headers: {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'Authorization'=>'Bearer yyy', 'Content-Type'=>'application/json', 'User-Agent'=>'Ruby', 'X-Api-Key'=>'ixj98c98njkn109su9jxkjks61'}).
+      to_return(status: 200, body: "", headers: {})
+
+    auth_token.execute_request!(:get, "/fields", headers: {FieldView::NEXT_TOKEN_HEADER_KEY => nil})
+    assert !auth_token.last_request_headers.has_key?(FieldView::NEXT_TOKEN_HEADER_KEY.downcase),
+      "Should not have the next token header"
+  end
+
   def test_expiration_at_initialization
     five_seconds_from_now = Time.now + 5
     ten_seconds_from_now = Time.now + 10

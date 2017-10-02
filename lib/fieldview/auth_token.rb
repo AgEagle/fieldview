@@ -2,6 +2,7 @@ module FieldView
   class AuthToken
     attr_accessor :access_token, :access_token_expiration_at, :refresh_token, :refresh_token_expiration_at
     attr_accessor :last_request
+    attr_accessor :last_request_headers
     def initialize(params)
       # Assume now was 5 seconds ago
       now = FieldView.get_now_for_auth_token - 5
@@ -53,6 +54,11 @@ module FieldView
     end
 
     def execute_request!(method, path, headers: {}, params: {})
+      next_token_header = headers[FieldView::NEXT_TOKEN_HEADER_KEY]
+      # Upon initial request the api no longer wants us to send anything
+      if next_token_header.to_s == "" then
+        headers.delete(FieldView::NEXT_TOKEN_HEADER_KEY)
+      end
       self.last_request = path
       if access_token_expired? && refresh_token_expired? then
         raise AllTokensExpiredError.new("All of your tokens have expired. " \
@@ -89,6 +95,8 @@ module FieldView
       headers.each do |header,value|
         request[header] = value.to_s
       end
+      self.last_request_headers = request.to_hash
+
       response = nil
       begin
         response = http.request(request)
